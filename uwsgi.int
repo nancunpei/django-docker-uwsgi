@@ -1,0 +1,29 @@
+# uwsgi.ini file
+[uwsgi]
+
+# Django-related settings
+# the base directory (full path)
+chdir           = /app
+static-map      = /static=/var/www/reportsys/
+# Django's wsgi file
+module          = system_settings.wsgi
+# master
+master          = true
+# maximum number of worker processes
+processes       = 16
+# python multi threads suport
+enable-threads  = True
+
+thread          = 2
+# the socket (use the full path to be safe
+;socket          = :9090
+http            = :9090
+# clear environment on exit
+vacuum          = true
+daemonize       = /var/log/django.log
+pidfile         = /run/django/uwsgi.pid
+buffer-size     = 65535
+chunked-input-timeout = 300
+http-timeout = 600
+http-connect-timeout = 600
+listen = 128
